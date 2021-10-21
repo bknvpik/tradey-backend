@@ -1,7 +1,7 @@
 import { Offer } from 'src/offers/entities/offer.entity';
 import { UserFavorite } from 'src/users/entities/user-favorite.entity';
 import { User } from 'src/users/entities/user.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, JoinColumn, OneToMany, ManyToMany } from 'typeorm';
 import { Category } from './category.entity';
 import { Condition } from './condition.entity';
 import { ItemImages } from './item-images.entity';
@@ -48,12 +48,12 @@ export class Item {
     @Column("int", { default: 0 })
     views: number;
 
-    @ManyToOne(() => Offer, offer => offer.item, {
+    @ManyToMany(() => Offer, offer => offer.item, {
         cascade: true
     })
     offer: Offer;
 
-    @ManyToOne(() => Offer, offer => offer.itemOffered, {
+    @ManyToMany(() => Offer, offer => offer.itemOffered, {
         cascade: true
     })
     offered: Offer;

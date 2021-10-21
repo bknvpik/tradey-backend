@@ -1,5 +1,5 @@
 import { Item } from 'src/items/entities/item.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
 
 export enum Status {
     PENDING = "pending",
@@ -13,10 +13,12 @@ export class Offer {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @OneToMany(() => Item, item => item.offer)
+    @ManyToMany(() => Item, item => item.offer)
+    @JoinTable()
     item: Item[];
 
-    @OneToMany(() => Item, item => item.offered)
+    @ManyToMany(() => Item, item => item.offered)
+    @JoinTable()
     itemOffered: Item[];
 
     @Column("enum", { enum: Status, default: Status.PENDING, nullable: false })

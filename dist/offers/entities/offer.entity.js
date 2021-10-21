@@ -26,11 +26,13 @@ __decorate([
     __metadata("design:type", String)
 ], Offer.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => item_entity_1.Item, item => item.offer),
+    (0, typeorm_1.ManyToMany)(() => item_entity_1.Item, item => item.offer),
+    (0, typeorm_1.JoinTable)(),
     __metadata("design:type", Array)
 ], Offer.prototype, "item", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => item_entity_1.Item, item => item.offered),
+    (0, typeorm_1.ManyToMany)(() => item_entity_1.Item, item => item.offered),
+    (0, typeorm_1.JoinTable)(),
     __metadata("design:type", Array)
 ], Offer.prototype, "itemOffered", void 0);
 __decorate([

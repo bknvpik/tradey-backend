@@ -72,13 +72,13 @@ __decorate([
     __metadata("design:type", Number)
 ], Item.prototype, "views", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => offer_entity_1.Offer, offer => offer.item, {
+    (0, typeorm_1.ManyToMany)(() => offer_entity_1.Offer, offer => offer.item, {
         cascade: true
     }),
     __metadata("design:type", offer_entity_1.Offer)
 ], Item.prototype, "offer", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => offer_entity_1.Offer, offer => offer.itemOffered, {
+    (0, typeorm_1.ManyToMany)(() => offer_entity_1.Offer, offer => offer.itemOffered, {
         cascade: true
     }),
     __metadata("design:type", offer_entity_1.Offer)

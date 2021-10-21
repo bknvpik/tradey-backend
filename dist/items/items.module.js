@@ -10,10 +10,24 @@ exports.ItemsModule = void 0;
 const common_1 = require("@nestjs/common");
 const items_service_1 = require("./items.service");
 const items_controller_1 = require("./items.controller");
+const typeorm_1 = require("@nestjs/typeorm");
+const item_entity_1 = require("./entities/item.entity");
+const category_entity_1 = require("./entities/category.entity");
+const condition_entity_1 = require("./entities/condition.entity");
+const item_images_entity_1 = require("./entities/item-images.entity");
+const size_entity_1 = require("./entities/size.entity");
 let ItemsModule = class ItemsModule {
 };
 ItemsModule = __decorate([
     (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([
+                category_entity_1.Category,
+                condition_entity_1.Condition,
+                item_images_entity_1.ItemImages,
+                item_entity_1.Item,
+                size_entity_1.Size
+            ])
+        ],
         providers: [items_service_1.ItemsService],
         controllers: [items_controller_1.ItemsController]
     })
