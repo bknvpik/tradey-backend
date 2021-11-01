@@ -31,7 +31,13 @@ let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forRoot(), users_module_1.UsersModule, items_module_1.ItemsModule, offers_module_1.OffersModule, auth_module_1.AuthModule],
+        imports: [
+            typeorm_1.TypeOrmModule.forRoot(),
+            users_module_1.UsersModule,
+            items_module_1.ItemsModule,
+            offers_module_1.OffersModule,
+            auth_module_1.AuthModule
+        ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     }),

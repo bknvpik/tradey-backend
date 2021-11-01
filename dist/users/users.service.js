@@ -15,8 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const app_controller_1 = require("../app.controller");
 const typeorm_2 = require("typeorm");
 const user_entity_1 = require("./entities/user.entity");
+const bcrypt = require("bcrypt");
 let UsersService = class UsersService {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
@@ -24,8 +26,14 @@ let UsersService = class UsersService {
     findAll() {
         return this.usersRepository.find();
     }
-    findOne(id) {
-        return this.usersRepository.findOne(id);
+    async findOne(username) {
+        return this.usersRepository.findOne({ eMail: username });
+    }
+    async create(user) {
+        const salt = await bcrypt.genSalt();
+        const hash = await bcrypt.hash(user.password, salt);
+        const newUser = Object.assign(Object.assign({}, user), { password: hash });
+        await this.usersRepository.save(newUser);
     }
     async remove(id) {
         await this.usersRepository.delete(id);

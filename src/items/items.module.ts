@@ -7,6 +7,7 @@ import { Category } from './entities/category.entity';
 import { Condition } from './entities/condition.entity';
 import { ItemImages } from './entities/item-images.entity';
 import { Size } from './entities/size.entity';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature
@@ -16,7 +17,8 @@ import { Size } from './entities/size.entity';
       ItemImages,
       Item,
       Size
-    ])
+    ]),
+    AuthModule
   ],
   providers: [ItemsService],
   controllers: [ItemsController]

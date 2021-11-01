@@ -7,7 +7,6 @@ export declare class OffersController {
     constructor(offersService: OffersService);
     findAll(): Promise<Offer[]>;
     findOne(id: string): Promise<Offer>;
-    findAllUser(userId: string): Promise<Offer[]>;
     findAllUserOutgoing(userId: string): Promise<Offer[]>;
     findAllUserIncoming(userId: string): Promise<Offer[]>;
     findAllStatus(status: string): Promise<Offer[]>;

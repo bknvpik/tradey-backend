@@ -16,6 +16,7 @@ const category_entity_1 = require("./entities/category.entity");
 const condition_entity_1 = require("./entities/condition.entity");
 const item_images_entity_1 = require("./entities/item-images.entity");
 const size_entity_1 = require("./entities/size.entity");
+const auth_module_1 = require("../auth/auth.module");
 let ItemsModule = class ItemsModule {
 };
 ItemsModule = __decorate([
@@ -26,7 +27,8 @@ ItemsModule = __decorate([
                 item_images_entity_1.ItemImages,
                 item_entity_1.Item,
                 size_entity_1.Size
-            ])
+            ]),
+            auth_module_1.AuthModule
         ],
         providers: [items_service_1.ItemsService],
         controllers: [items_controller_1.ItemsController]

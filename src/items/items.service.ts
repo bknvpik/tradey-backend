@@ -1,25 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Category } from './entities/category.entity';
+import { Condition } from './entities/condition.entity';
 import { Item } from './entities/item.entity';
+import { Size } from './entities/size.entity';
 
 @Injectable()
 export class ItemsService {
     constructor(
         @InjectRepository(Item)
         private itemsRepository: Repository<Item>,
+        @InjectRepository(Category)
+        private categoriesRepository: Repository<Category>,
+        @InjectRepository(Condition)
+        private conditionsRepository: Repository<Condition>,
+        @InjectRepository(Size)
+        private sizesRepository: Repository<Size>
     ) {}
 
     async findAll(): Promise<Item[]> {
         return await this.itemsRepository.find({
-            select: ["name", "description", "brand", "createdAt", "likes", "views"],
-            relations: [
-                "category",
-                "condition",
-                "size",
-                "user",
-                "images"
-            ]
+            select: ["name", "brand", "createdAt", "likes", "views"]
         });
     }
 
@@ -55,5 +57,17 @@ export class ItemsService {
                 "images"
             ]
         })
+    }
+
+    async findCategories(): Promise<Category[]> {
+        return await this.categoriesRepository.find();
+    }
+
+    async findConditions(): Promise<Condition[]> {
+        return await this.conditionsRepository.find();
+    }
+
+    async findSizes(): Promise<Size[]> {
+        return await this.sizesRepository.find();
     }
 }

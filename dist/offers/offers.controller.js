@@ -27,9 +27,6 @@ let OffersController = class OffersController {
     async findOne(id) {
         return await this.offersService.findOne(id);
     }
-    async findAllUser(userId) {
-        return await this.offersService.findAllUser(userId);
-    }
     async findAllUserOutgoing(userId) {
         return await this.offersService.findAllOutgoing(userId);
     }
@@ -46,7 +43,7 @@ let OffersController = class OffersController {
         return await this.offersService.findAllUserStatusOutgoing(params.userId, params.status);
     }
     async findAllUserStatusIncoming(params) {
-        return await this.offersService.findAllUserStatusOutgoing(params.userId, params.status);
+        return await this.offersService.findAllUserStatusIncoming(params.userId, params.status);
     }
     async createOffer(createOfferDto) {
         return await this.offersService.createOffer(createOfferDto);
@@ -71,13 +68,6 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], OffersController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Get)('user/:userId'),
-    __param(0, (0, common_1.Param)('userId')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], OffersController.prototype, "findAllUser", null);
 __decorate([
     (0, common_1.Get)('user/:userId/outgoing'),
     __param(0, (0, common_1.Param)('userId')),
@@ -114,7 +104,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OffersController.prototype, "findAllUserStatusOutgoing", null);
 __decorate([
-    (0, common_1.Get)('user/:userId/status/:status/outgoing'),
+    (0, common_1.Get)('user/:userId/status/:status/incoming'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

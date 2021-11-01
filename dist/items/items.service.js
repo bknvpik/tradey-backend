@@ -16,21 +16,20 @@ exports.ItemsService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
+const category_entity_1 = require("./entities/category.entity");
+const condition_entity_1 = require("./entities/condition.entity");
 const item_entity_1 = require("./entities/item.entity");
+const size_entity_1 = require("./entities/size.entity");
 let ItemsService = class ItemsService {
-    constructor(itemsRepository) {
+    constructor(itemsRepository, categoriesRepository, conditionsRepository, sizesRepository) {
         this.itemsRepository = itemsRepository;
+        this.categoriesRepository = categoriesRepository;
+        this.conditionsRepository = conditionsRepository;
+        this.sizesRepository = sizesRepository;
     }
     async findAll() {
         return await this.itemsRepository.find({
-            select: ["name", "description", "brand", "createdAt", "likes", "views"],
-            relations: [
-                "category",
-                "condition",
-                "size",
-                "user",
-                "images"
-            ]
+            select: ["name", "brand", "createdAt", "likes", "views"]
         });
     }
     async findOne(id) {
@@ -64,11 +63,26 @@ let ItemsService = class ItemsService {
             ]
         });
     }
+    async findCategories() {
+        return await this.categoriesRepository.find();
+    }
+    async findConditions() {
+        return await this.conditionsRepository.find();
+    }
+    async findSizes() {
+        return await this.sizesRepository.find();
+    }
 };
 ItemsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(item_entity_1.Item)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(category_entity_1.Category)),
+    __param(2, (0, typeorm_1.InjectRepository)(condition_entity_1.Condition)),
+    __param(3, (0, typeorm_1.InjectRepository)(size_entity_1.Size)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
+        typeorm_2.Repository,
+        typeorm_2.Repository])
 ], ItemsService);
 exports.ItemsService = ItemsService;
 //# sourceMappingURL=items.service.js.map

@@ -15,12 +15,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ItemsController = void 0;
 const common_1 = require("@nestjs/common");
 const items_service_1 = require("./items.service");
+const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
+const auth_service_1 = require("../auth/auth.service");
 let ItemsController = class ItemsController {
-    constructor(itemsService) {
+    constructor(itemsService, authService) {
         this.itemsService = itemsService;
+        this.authService = authService;
     }
-    async findAll() {
+    async findAll(req) {
+        console.log(req);
+        const data = await this.authService.verifyCookie(req.cookies['jwt']);
+        console.log(data);
         return await this.itemsService.findAll();
+    }
+    async getCategories() {
+        return await this.itemsService.findCategories();
+    }
+    async getConditions() {
+        return await this.itemsService.findConditions();
+    }
+    async getSizes() {
+        return await this.itemsService.findSizes();
     }
     async findOne(id) {
         return `finds all items with id: ${id}`;
@@ -42,11 +57,31 @@ let ItemsController = class ItemsController {
     }
 };
 __decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ItemsController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('categories'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], ItemsController.prototype, "findAll", null);
+], ItemsController.prototype, "getCategories", null);
+__decorate([
+    (0, common_1.Get)('conditions'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ItemsController.prototype, "getConditions", null);
+__decorate([
+    (0, common_1.Get)('sizes'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ItemsController.prototype, "getSizes", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
@@ -90,7 +125,8 @@ __decorate([
 ], ItemsController.prototype, "deleteItem", null);
 ItemsController = __decorate([
     (0, common_1.Controller)('items'),
-    __metadata("design:paramtypes", [items_service_1.ItemsService])
+    __metadata("design:paramtypes", [items_service_1.ItemsService,
+        auth_service_1.AuthService])
 ], ItemsController);
 exports.ItemsController = ItemsController;
 //# sourceMappingURL=items.controller.js.map
