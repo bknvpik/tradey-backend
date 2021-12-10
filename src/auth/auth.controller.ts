@@ -19,7 +19,6 @@ export class AuthController {
         res.cookie('jwt', jwt, { httpOnly: true })
 
         return {
-            jwt: jwt,
             message: 'Succesfully signed in!'
         }
     }
@@ -29,10 +28,15 @@ export class AuthController {
         res.clearCookie('jwt');
         return 'logged out!';
     }
-    
+
     @UseGuards(JwtAuthGuard)
     @Get('profile')
     async getProfile(@Req() req: Request) {
         return req.user;
+    }
+
+    @Get('check-auth')
+    async checkAuth(@Req() req: Request): Promise<boolean> {
+        return await this.authService.verifyCookie(req.cookies['jwt']);
     }
 }

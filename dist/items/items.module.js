@@ -5,6 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var ItemsModule_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ItemsModule = void 0;
 const common_1 = require("@nestjs/common");
@@ -17,9 +18,10 @@ const condition_entity_1 = require("./entities/condition.entity");
 const item_images_entity_1 = require("./entities/item-images.entity");
 const size_entity_1 = require("./entities/size.entity");
 const auth_module_1 = require("../auth/auth.module");
-let ItemsModule = class ItemsModule {
+const popularity_module_1 = require("../popularity/popularity.module");
+let ItemsModule = ItemsModule_1 = class ItemsModule {
 };
-ItemsModule = __decorate([
+ItemsModule = ItemsModule_1 = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([
                 category_entity_1.Category,
@@ -28,10 +30,11 @@ ItemsModule = __decorate([
                 item_entity_1.Item,
                 size_entity_1.Size
             ]),
-            auth_module_1.AuthModule
+            popularity_module_1.PopularityModule
         ],
         providers: [items_service_1.ItemsService],
-        controllers: [items_controller_1.ItemsController]
+        controllers: [items_controller_1.ItemsController],
+        exports: [ItemsModule_1, items_service_1.ItemsService, typeorm_1.TypeOrmModule]
     })
 ], ItemsModule);
 exports.ItemsModule = ItemsModule;

@@ -25,7 +25,6 @@ let AuthController = class AuthController {
         const jwt = await this.authService.login(req.user);
         res.cookie('jwt', jwt, { httpOnly: true });
         return {
-            jwt: jwt,
             message: 'Succesfully signed in!'
         };
     }
@@ -35,6 +34,9 @@ let AuthController = class AuthController {
     }
     async getProfile(req) {
         return req.user;
+    }
+    async checkAuth(req) {
+        return await this.authService.verifyCookie(req.cookies['jwt']);
     }
 };
 __decorate([
@@ -61,6 +63,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "getProfile", null);
+__decorate([
+    (0, common_1.Get)('check-auth'),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "checkAuth", null);
 AuthController = __decorate([
     (0, common_1.Controller)(''),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

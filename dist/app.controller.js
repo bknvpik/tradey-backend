@@ -20,8 +20,8 @@ let AppController = class AppController {
     constructor(usersService) {
         this.usersService = usersService;
     }
-    async signUp(createUserDto) {
-        await this.usersService.create(createUserDto);
+    async signUp(user) {
+        await this.usersService.create(user);
     }
 };
 __decorate([

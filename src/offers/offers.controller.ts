@@ -52,6 +52,7 @@ export class OffersController {
 
     @Post()
     async createOffer(@Body() createOfferDto: CreateOfferDto): Promise<void> {
+        console.log(createOfferDto)
         return await this.offersService.createOffer(createOfferDto);
     }
 

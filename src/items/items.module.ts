@@ -8,6 +8,7 @@ import { Condition } from './entities/condition.entity';
 import { ItemImages } from './entities/item-images.entity';
 import { Size } from './entities/size.entity';
 import { AuthModule } from 'src/auth/auth.module';
+import { PopularityModule } from 'src/popularity/popularity.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature
@@ -18,9 +19,10 @@ import { AuthModule } from 'src/auth/auth.module';
       Item,
       Size
     ]),
-    AuthModule
+    PopularityModule
   ],
   providers: [ItemsService],
-  controllers: [ItemsController]
+  controllers: [ItemsController],
+  exports: [ItemsModule, ItemsService, TypeOrmModule]
 })
 export class ItemsModule {}

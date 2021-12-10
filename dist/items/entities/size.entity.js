@@ -19,12 +19,12 @@ __decorate([
     __metadata("design:type", Number)
 ], Size.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)("varchar", { length: 100, unique: true, nullable: false }),
+    (0, typeorm_1.Column)({ type: "varchar", length: 100, unique: true, nullable: false }),
     __metadata("design:type", String)
 ], Size.prototype, "size", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => item_entity_1.Item, item => item.size),
-    __metadata("design:type", item_entity_1.Item)
+    (0, typeorm_1.OneToMany)(() => item_entity_1.Item, item => item.size),
+    __metadata("design:type", Array)
 ], Size.prototype, "item", void 0);
 Size = __decorate([
     (0, typeorm_1.Entity)()

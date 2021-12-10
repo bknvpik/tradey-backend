@@ -46,6 +46,7 @@ let OffersController = class OffersController {
         return await this.offersService.findAllUserStatusIncoming(params.userId, params.status);
     }
     async createOffer(createOfferDto) {
+        console.log(createOfferDto);
         return await this.offersService.createOffer(createOfferDto);
     }
     async editOffer(id, updateOfferDto) {

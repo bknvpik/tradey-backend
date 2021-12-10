@@ -88,7 +88,9 @@ export class OffersService {
     }
 
     async createOffer(offer: OfferInterface): Promise<void> {
-        this.offersRepository.create(offer);
+        console.log(offer);
+        console.log(await this.offersRepository.save(offer))
+        await this.offersRepository.create(offer);
     }
 
     async editOffer(id: string, offer: OfferInterface): Promise<void> {

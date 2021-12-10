@@ -11,9 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const item_entity_1 = require("../../items/entities/item.entity");
+const favorite_entity_1 = require("../../popularity/entities/favorite.entity");
 const typeorm_1 = require("typeorm");
 const user_details_entity_1 = require("./user-details.entity");
-const user_favorite_entity_1 = require("./user-favorite.entity");
 const user_image_entity_1 = require("./user-image.entity");
 let User = class User {
 };
@@ -25,6 +25,10 @@ __decorate([
     (0, typeorm_1.Column)("varchar", { length: 200, unique: true, nullable: false }),
     __metadata("design:type", String)
 ], User.prototype, "eMail", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "varchar", length: 100, unique: true, nullable: false }),
+    __metadata("design:type", String)
+], User.prototype, "username", void 0);
 __decorate([
     (0, typeorm_1.Column)("varchar", { length: 255, nullable: false }),
     __metadata("design:type", String)
@@ -38,27 +42,19 @@ __decorate([
     __metadata("design:type", Boolean)
 ], User.prototype, "isActive", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => user_image_entity_1.UserImage, userImage => userImage.user, {
-        cascade: true
-    }),
+    (0, typeorm_1.OneToOne)(() => user_image_entity_1.UserImage, userImage => userImage.user, { cascade: true }),
     __metadata("design:type", user_image_entity_1.UserImage)
 ], User.prototype, "image", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => user_details_entity_1.UserDetails, userDetails => userDetails.user, {
-        cascade: true
-    }),
+    (0, typeorm_1.OneToOne)(() => user_details_entity_1.UserDetails, userDetails => userDetails.user, { cascade: true }),
     __metadata("design:type", user_details_entity_1.UserDetails)
 ], User.prototype, "details", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => item_entity_1.Item, item => item.user, {
-        cascade: true
-    }),
+    (0, typeorm_1.OneToMany)(() => item_entity_1.Item, item => item.user, { cascade: true }),
     __metadata("design:type", Array)
 ], User.prototype, "items", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => user_favorite_entity_1.UserFavorite, userFavorite => userFavorite.user, {
-        cascade: true
-    }),
+    (0, typeorm_1.OneToMany)(() => favorite_entity_1.Favorite, favorite => favorite.user, { cascade: true }),
     __metadata("design:type", Array)
 ], User.prototype, "favorites", void 0);
 User = __decorate([

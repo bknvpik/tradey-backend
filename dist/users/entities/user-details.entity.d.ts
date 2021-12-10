@@ -5,6 +5,7 @@ export declare class UserDetails {
     id: string;
     firstName: string;
     lastName: string;
+    about: string;
     zipCode: string;
     address1: string;
     address2: string;

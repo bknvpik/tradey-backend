@@ -29,6 +29,10 @@ __decorate([
     __metadata("design:type", String)
 ], UserDetails.prototype, "lastName", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: "varchar", length: 255, nullable: true }),
+    __metadata("design:type", String)
+], UserDetails.prototype, "about", void 0);
+__decorate([
     (0, typeorm_1.Column)("varchar", { length: 100, nullable: true }),
     __metadata("design:type", String)
 ], UserDetails.prototype, "zipCode", void 0);

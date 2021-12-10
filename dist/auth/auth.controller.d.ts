@@ -7,4 +7,5 @@ export declare class AuthController {
     login(req: Request, res: Response): Promise<any>;
     signOut(res: Response): Promise<string>;
     getProfile(req: Request): Promise<Express.User>;
+    checkAuth(req: Request): Promise<boolean>;
 }
