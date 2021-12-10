@@ -10,5 +10,5 @@ export class Category {
     category: string;
 
     @OneToOne(() => Item, item => item.category)
-    item: Item;
+    item: Item[];
 }

@@ -19,12 +19,12 @@ __decorate([
     __metadata("design:type", Number)
 ], Condition.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)("varchar", { length: 100, unique: true, nullable: false }),
+    (0, typeorm_1.Column)({ type: "varchar", length: 100, unique: true, nullable: false }),
     __metadata("design:type", String)
 ], Condition.prototype, "condition", void 0);
 __decorate([
     (0, typeorm_1.OneToOne)(() => item_entity_1.Item, item => item.condition),
-    __metadata("design:type", item_entity_1.Item)
+    __metadata("design:type", Array)
 ], Condition.prototype, "item", void 0);
 Condition = __decorate([
     (0, typeorm_1.Entity)()

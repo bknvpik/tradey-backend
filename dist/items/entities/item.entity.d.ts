@@ -1,5 +1,6 @@
 import { Offer } from 'src/offers/entities/offer.entity';
-import { UserFavorite } from 'src/users/entities/user-favorite.entity';
+import { Favorite } from 'src/popularity/entities/favorite.entity';
+import { Popularity } from 'src/popularity/entities/popularity.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Category } from './category.entity';
 import { Condition } from './condition.entity';
@@ -16,10 +17,9 @@ export declare class Item {
     user: User;
     createdAt: Date;
     status: boolean;
-    likes: number;
-    views: number;
+    popularity: Popularity;
     offer: Offer;
     offered: Offer;
     images: ItemImages[];
-    favorites: UserFavorite[];
+    favorites: Favorite[];
 }

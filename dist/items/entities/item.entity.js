@@ -11,7 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Item = void 0;
 const offer_entity_1 = require("../../offers/entities/offer.entity");
-const user_favorite_entity_1 = require("../../users/entities/user-favorite.entity");
+const favorite_entity_1 = require("../../popularity/entities/favorite.entity");
+const popularity_entity_1 = require("../../popularity/entities/popularity.entity");
 const user_entity_1 = require("../../users/entities/user.entity");
 const typeorm_1 = require("typeorm");
 const category_entity_1 = require("./category.entity");
@@ -37,18 +38,15 @@ __decorate([
     __metadata("design:type", String)
 ], Item.prototype, "brand", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => category_entity_1.Category, category => category.item),
-    (0, typeorm_1.JoinColumn)(),
+    (0, typeorm_1.ManyToOne)(() => category_entity_1.Category, category => category.item),
     __metadata("design:type", category_entity_1.Category)
 ], Item.prototype, "category", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => condition_entity_1.Condition, condition => condition.item),
-    (0, typeorm_1.JoinColumn)(),
+    (0, typeorm_1.ManyToOne)(() => condition_entity_1.Condition, condition => condition.item),
     __metadata("design:type", condition_entity_1.Condition)
 ], Item.prototype, "condition", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => size_entity_1.Size, size => size.item),
-    (0, typeorm_1.JoinColumn)(),
+    (0, typeorm_1.ManyToOne)(() => size_entity_1.Size, size => size.item),
     __metadata("design:type", size_entity_1.Size)
 ], Item.prototype, "size", void 0);
 __decorate([
@@ -56,7 +54,7 @@ __decorate([
     __metadata("design:type", user_entity_1.User)
 ], Item.prototype, "user", void 0);
 __decorate([
-    (0, typeorm_1.Column)("timestamp", { nullable: false }),
+    (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
 ], Item.prototype, "createdAt", void 0);
 __decorate([
@@ -64,33 +62,27 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Item.prototype, "status", void 0);
 __decorate([
-    (0, typeorm_1.Column)("int", { default: 0 }),
-    __metadata("design:type", Number)
-], Item.prototype, "likes", void 0);
+    (0, typeorm_1.OneToOne)(() => popularity_entity_1.Popularity, popularity => popularity.item, { cascade: true }),
+    __metadata("design:type", popularity_entity_1.Popularity)
+], Item.prototype, "popularity", void 0);
 __decorate([
-    (0, typeorm_1.Column)("int", { default: 0 }),
-    __metadata("design:type", Number)
-], Item.prototype, "views", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => offer_entity_1.Offer, offer => offer.item, {
+    (0, typeorm_1.ManyToMany)(() => offer_entity_1.Offer, offer => offer.item, {
         cascade: true
     }),
     __metadata("design:type", offer_entity_1.Offer)
 ], Item.prototype, "offer", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => offer_entity_1.Offer, offer => offer.itemOffered, {
+    (0, typeorm_1.ManyToMany)(() => offer_entity_1.Offer, offer => offer.itemOffered, {
         cascade: true
     }),
     __metadata("design:type", offer_entity_1.Offer)
 ], Item.prototype, "offered", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => item_images_entity_1.ItemImages, itemImages => itemImages.item, {
-        cascade: true
-    }),
+    (0, typeorm_1.OneToMany)(type => item_images_entity_1.ItemImages, itemImages => itemImages.item, { cascade: true }),
     __metadata("design:type", Array)
 ], Item.prototype, "images", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => user_favorite_entity_1.UserFavorite, userFavorite => userFavorite.item, {
+    (0, typeorm_1.OneToMany)(() => favorite_entity_1.Favorite, favorite => favorite.item, {
         cascade: true
     }),
     __metadata("design:type", Array)

@@ -19,11 +19,11 @@ __decorate([
     __metadata("design:type", String)
 ], ItemImages.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)("varchar", { length: 255, unique: true, nullable: false }),
+    (0, typeorm_1.Column)({ type: "varchar", length: 255, unique: true, nullable: false }),
     __metadata("design:type", String)
 ], ItemImages.prototype, "image", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => item_entity_1.Item, item => item.images),
+    (0, typeorm_1.ManyToOne)(type => item_entity_1.Item, item => item.images),
     __metadata("design:type", item_entity_1.Item)
 ], ItemImages.prototype, "item", void 0);
 ItemImages = __decorate([

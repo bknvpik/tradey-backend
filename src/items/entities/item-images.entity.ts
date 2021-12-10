@@ -6,9 +6,9 @@ export class ItemImages {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column("varchar", { length: 255, unique: true, nullable: false})
+    @Column({ type: "varchar", length: 255, unique: true, nullable: false })
     image: string;
 
-    @ManyToOne(() => Item, item => item.images)
+    @ManyToOne(type => Item, item => item.images)
     item: Item;
 }

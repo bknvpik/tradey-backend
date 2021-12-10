@@ -19,6 +19,7 @@ const offers_module_1 = require("./offers/offers.module");
 const auth_module_1 = require("./auth/auth.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
+const popularity_module_1 = require("./popularity/popularity.module");
 typeorm_1.TypeOrmModule.forRootAsync({
     useFactory: async () => Object.assign(await (0, typeorm_2.getConnectionOptions)(), {
         autoLoadEntities: true,
@@ -31,7 +32,14 @@ let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forRoot(), users_module_1.UsersModule, items_module_1.ItemsModule, offers_module_1.OffersModule, auth_module_1.AuthModule],
+        imports: [
+            typeorm_1.TypeOrmModule.forRoot(),
+            users_module_1.UsersModule,
+            items_module_1.ItemsModule,
+            offers_module_1.OffersModule,
+            auth_module_1.AuthModule,
+            popularity_module_1.PopularityModule
+        ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     }),

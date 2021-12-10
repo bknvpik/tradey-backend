@@ -9,26 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserFavorite = void 0;
+exports.Favorite = void 0;
 const item_entity_1 = require("../../items/entities/item.entity");
+const user_entity_1 = require("../../users/entities/user.entity");
 const typeorm_1 = require("typeorm");
-const user_entity_1 = require("./user.entity");
-let UserFavorite = class UserFavorite {
+let Favorite = class Favorite {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
     __metadata("design:type", String)
-], UserFavorite.prototype, "id", void 0);
+], Favorite.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => item_entity_1.Item, item => item.favorites),
     __metadata("design:type", item_entity_1.Item)
-], UserFavorite.prototype, "item", void 0);
+], Favorite.prototype, "item", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => user_entity_1.User, user => user.favorites),
     __metadata("design:type", user_entity_1.User)
-], UserFavorite.prototype, "user", void 0);
-UserFavorite = __decorate([
+], Favorite.prototype, "user", void 0);
+Favorite = __decorate([
     (0, typeorm_1.Entity)()
-], UserFavorite);
-exports.UserFavorite = UserFavorite;
-//# sourceMappingURL=user-favorite.entity.js.map
+], Favorite);
+exports.Favorite = Favorite;
+//# sourceMappingURL=favorite.entity.js.map

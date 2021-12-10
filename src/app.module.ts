@@ -7,6 +7,8 @@ import { OffersModule } from './offers/offers.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection, getConnectionOptions } from 'typeorm';
+import { PopularityModule } from './popularity/popularity.module';
+
 
 TypeOrmModule.forRootAsync({
   useFactory: async () =>
@@ -16,7 +18,14 @@ TypeOrmModule.forRootAsync({
 });
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), UsersModule, ItemsModule, OffersModule, AuthModule],
+  imports: [
+    TypeOrmModule.forRoot(),
+    UsersModule,
+    ItemsModule,
+    OffersModule,
+    AuthModule,
+    PopularityModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

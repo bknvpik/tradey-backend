@@ -24,7 +24,7 @@ __decorate([
 ], Category.prototype, "category", void 0);
 __decorate([
     (0, typeorm_1.OneToOne)(() => item_entity_1.Item, item => item.category),
-    __metadata("design:type", item_entity_1.Item)
+    __metadata("design:type", Array)
 ], Category.prototype, "item", void 0);
 Category = __decorate([
     (0, typeorm_1.Entity)()

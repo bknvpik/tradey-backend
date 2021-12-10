@@ -14,6 +14,9 @@ export class UserDetails {
     @Column("varchar", { length: 100, nullable: true })
     lastName: string;
 
+    @Column({ type: "varchar", length: 255, nullable: true })
+    about: string;
+    
     @Column("varchar", { length: 100, nullable: true })
     zipCode: string
 

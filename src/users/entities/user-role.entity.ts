@@ -14,6 +14,6 @@ export class UserRole {
     @Column("enum", { enum: Role, default: Role.USER, nullable: false })
     role: number;
 
-    @OneToOne(() => User, user => user.role)
-    user: User;
+    // @OneToOne(() => User, user => user.role)
+    // user: User;
 }
